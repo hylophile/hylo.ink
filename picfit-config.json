@@ -4,6 +4,10 @@
     "src": {
       "type": "fs",
       "location": "./export"
+    },
+    "dst": {
+      "type": "fs",
+      "location": "./export/cache"
     }
   },
   "kvstore": {

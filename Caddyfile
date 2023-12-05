@@ -1,12 +1,20 @@
 :3333
-file_server
+# file_server
 
 log {
-
-output stdout
+	output stdout
 }
 
-handle_path /api/thumbs/* {
-    rewrite * /display?w=250&path={path}&op=resize
+handle_path /art/api/thumbnail/* {
+	rewrite * /display?w=404&h=250&path={path}&op=thumbnail
 	reverse_proxy :3001
+}
+
+handle_path /art/api/fullhd/* {
+	rewrite * /display?w=1920&path={path}&op=resize
+	reverse_proxy :3001
+}
+
+proxy / http://localhost:8080 {
+    transparent
 }
