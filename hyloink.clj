@@ -5,23 +5,27 @@
   (:require [babashka.process :as p :refer [process]]
             [hiccup2.core :as h]))
 
-(def imgs (into [] (map str (fs/list-dir "./export"))))
-;; (def imgs (into [] (map str (fs/glob "/home/n/art/export" "*.png"))))
+(def imgs (->> (fs/glob "./export" "*.jpg" {:follow-links true})
+               (map fs/file-name)
+               sort
+               reverse))
+
 (defn img [s]
-  [:a {:href s}
-   [:img {:src s :width "250px"}]])
+  [:figure
+   [:a {:href (format "/art/api/fullhd/%s" s)}
+    [:img.mx-auto.transition.ease-in-out {:class "hover:scale-105" :src (format "/art/api/thumbnail/%s" s)}]]
+   [:figcaption.text-center.pt-2
+    (fs/strip-ext s {:ext "kra.jpg"})]])
 
 (def out (str (h/html
                [:head
                 [:meta {:charset "utf-8"}]
-               [:div.grid.grid-cols-2.gap-2
-                (map img imgs)]
                 [:script {:src "https://cdn.tailwindcss.com"}]
                 [:script {:src "./live-reload.js"}]]
+               [:main.max-w-prose.mx-auto
+                [:div.grid.grid-cols-2.gap-4.m-4
+                                (map img imgs)]])))
 
-               [:ul
-                      (for [x (range 1 9)]
-                        [:li x])])))
 
 
 (spit "./index.html" out)
