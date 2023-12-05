@@ -14,9 +14,10 @@
 (def out (str (h/html
                [:head
                 [:meta {:charset "utf-8"}]
-                [:script {:src "https://cdn.tailwindcss.com"}]]
                [:div.grid.grid-cols-2.gap-2
                 (map img imgs)]
+                [:script {:src "https://cdn.tailwindcss.com"}]
+                [:script {:src "./live-reload.js"}]]
 
                [:ul
                       (for [x (range 1 9)]
