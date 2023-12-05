@@ -1,0 +1,12 @@
+:3333
+file_server
+
+log {
+
+output stdout
+}
+
+handle_path /api/thumbs/* {
+    rewrite * /display?w=250&path={path}&op=resize
+	reverse_proxy :3001
+}
