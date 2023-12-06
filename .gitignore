@@ -20,3 +20,6 @@ pom.xml.asc
 /export
 /picfit
 /.lsp
+.picfit/
+web/*.html
+web/tailwind.css
