@@ -9,9 +9,13 @@ services:
       - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./web:/usr/share/caddy/web
+      - ./web:/srv/web
+      - caddy_data:/data
     cap_add:
       - NET_ADMIN
+    environment:
+      - SITE_ADDRESS=hylo.ink
+      - PICFIT_HOST=picfit
 
   picfit:
     image: thoas/picfit:0.2.1
@@ -22,4 +26,9 @@ services:
       - PICFIT_CONFIG_PATH=/picfit-config.json
     volumes:
       - ./picfit-config.json:/picfit-config.json
-      - ./export:/export
+      - type: bind
+        source: ./export
+        target: /export
+
+volumes:
+  caddy_data:
