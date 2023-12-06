@@ -63,4 +63,4 @@
           [:div]]])))
 
 (doseq [page pages]
-  (spit (format "%s.html" (:filename page)) (gen page)))
+  (spit (format "web/%s.html" (:filename page)) (gen page)))
