@@ -39,7 +39,7 @@
 
 (defn menu [current-page]
          [:nav.bg-gradient-to-b.from-sky-100.h-32.flex.col-span-4
-          [:ol.flex.justify-center.w-full.items-baseline.justify-evenly.mt-12
+          [:ol.flex.justify-center.w-full.items-baseline.justify-evenly.mt-12.max-w-prose.mx-auto
            (for [page pages]
              (menu-item {:active? (= (:name current-page) (:name page))
                          :link (:link page)
