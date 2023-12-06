@@ -1,17 +1,19 @@
-:3333
-try_files {path}.html
-file_server
+{$SITE_ADDRESS} {
+	root * ./web
+	try_files {path}.html
+	file_server
 
-log {
-	output stdout
-}
+	log {
+		output stdout
+	}
 
-handle_path /art/api/thumbnail/* {
-	rewrite * /display?w=404&h=250&path={path}&op=thumbnail
-	reverse_proxy :3001
-}
+	handle_path /art/api/thumbnail/* {
+		rewrite * /display?w=404&h=250&path={path}&op=thumbnail
+		reverse_proxy :3001
+	}
 
-handle_path /art/api/fullhd/* {
-	rewrite * /display?w=1920&path={path}&op=resize
-	reverse_proxy :3001
+	handle_path /art/api/fullhd/* {
+		rewrite * /display?w=1920&path={path}&op=resize
+		reverse_proxy :3001
+	}
 }

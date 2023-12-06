@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./web:/usr/share/caddy/web
+    cap_add:
+      - NET_ADMIN
+
+  picfit:
+    image: thoas/picfit:0.2.1
+    container_name: picfit
+    ports:
+      - "3001:3001"
+    environment:
+      - PICFIT_CONFIG_PATH=/picfit-config.json
+    volumes:
+      - ./picfit-config.json:/picfit-config.json
+      - ./export:/export
