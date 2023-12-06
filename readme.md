@@ -1,6 +1,6 @@
 # Deploy
 ```sh
-$ rclone sync -LP . mve:web --exclude '.*{/**,}'
+$ rclone copy -LP . mve:web --exclude '.*{/**,}'
 ```
 
 # Dev setup
