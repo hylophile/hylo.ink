@@ -52,7 +52,7 @@
   (str (h/html
         [:head
          [:meta {:charset "utf-8"}]
-         [:script {:src "https://cdn.tailwindcss.com"}]
+         [:link {:href "tailwind.css" :rel "stylesheet"}]
          [:script {:src "./live-reload.js"}]]
 
         [:body.text-slate-700
