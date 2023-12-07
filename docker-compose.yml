@@ -9,8 +9,10 @@ services:
       - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./web:/srv/web
       - caddy_data:/data
+      - type: bind
+        source: ./web
+        target: /srv/web
     cap_add:
       - NET_ADMIN
     environment:
