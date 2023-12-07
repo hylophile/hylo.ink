@@ -53,7 +53,8 @@
         [:head
          [:meta {:charset "utf-8"}]
          [:link {:href "tailwind.css" :rel "stylesheet"}]
-         [:script {:src "./live-reload.js"}]]
+         [:script {:src "./live-reload.js"}]
+         [:title (format "hylo ∘ ink ⸺ %s" (:name page))]]
 
         [:body.text-slate-700
          (menu page)
