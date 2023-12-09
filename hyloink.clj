@@ -12,15 +12,15 @@
 (defn img [s]
   [:figure
    [:a {:href (format "/art/api/fullhd/%s" s)}
-    [:img.mx-auto.transition.ease-in-out {:class "hover:scale-105" :src (format "/art/api/thumbnail/%s" s)}]]
+    [:img.mx-auto.transition.ease-in-out {:class "hover_scale-105" :src (format "/art/api/thumbnail/%s" s)}]]
    [:figcaption.text-center.pt-2
     (fs/strip-ext s {:ext "kra.png"})]])
 
 
 (defn menu-item [{:keys [active? name link]}]
-  (let [base "text-3xl font-semibold tracking-wide hover:underline decoration-sky-400 decoration-4 hover:text-slate-900 hover:underline transition"
+  (let [base "text-3xl font-semibold tracking-wide hover_underline decoration-sky-400 decoration-4 hover_text-slate-900 transition"
         active "underline"]
-   [:li {:class (format "%s %s" base (if active? active nil))}
+   [:li {:class (format "%s %s" base (if active? active ""))}
     [:a {:href link} name]]))
 
 (defrecord Page [name link filename content])
@@ -30,15 +30,14 @@
                  "Daily"
                  "/daily"
                  "daily"
-                 [:div.col-span-2.max-w-prose.mx-auto
-                  [:div.grid.grid-cols-2.gap-4.m-4
-                                  (map img imgs)]]))
+                  [:div.grid.grid-cols-3.gap-8.mx-auto {:class "max-w-[80ch]"}
+                                  (map img imgs)]))
 (def page-about (Page. "About" "/about" "about" [:div]))
 
 (def pages [page-home page-daily page-about])
 
 (defn menu [current-page]
-         [:nav.bg-gradient-to-b.from-sky-100.h-32.flex.col-span-4
+         [:nav.bg-gradient-to-b.from-sky-100.h-32.flex
           [:ol.flex.justify-center.w-full.items-baseline.justify-evenly.mt-12.max-w-prose.mx-auto
            (for [page pages]
              (menu-item {:active? (= (:name current-page) (:name page))
