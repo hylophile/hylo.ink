@@ -23,3 +23,4 @@ pom.xml.asc
 .picfit/
 web/*.html
 web/tailwind.css
+web/art/

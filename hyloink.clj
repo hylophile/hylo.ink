@@ -11,8 +11,8 @@
 
 (defn img [s]
   [:figure
-   [:a {:href (format "/art/api/fullhd/%s" s)}
-    [:img.mx-auto.transition.ease-in-out {:class "hover_scale-105" :src (format "/art/api/thumbnail/%s" s)}]]
+   [:a {:href (format "art/1080p/%s" (clojure.string/replace s "kra" "hylo.fullhd"))}
+    [:img.mx-auto.transition.ease-in-out {:class "hover_scale-105" :src (format "art/thumbnail/%s" (-> s (clojure.string/replace "kra" "thumbnail") (clojure.string/replace "png" "jpg")))}]]
    [:figcaption.text-center.pt-2
     (fs/strip-ext s {:ext "kra.png"})]])
 

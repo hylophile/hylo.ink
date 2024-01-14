@@ -13,24 +13,27 @@ services:
       - type: bind
         source: ./web
         target: /srv/web
+      - type: bind
+        source: /var/log/caddy
+        target: /var/log/caddy
     cap_add:
       - NET_ADMIN
     environment:
       - SITE_ADDRESS=hylo.ink
-      - PICFIT_HOST=picfit
+      # - PICFIT_HOST=picfit
 
-  picfit:
-    image: thoas/picfit:0.2.1
-    container_name: picfit
-    ports:
-      - "3001:3001"
-    environment:
-      - PICFIT_CONFIG_PATH=/picfit-config.json
-    volumes:
-      - ./picfit-config.json:/picfit-config.json
-      - type: bind
-        source: ./export
-        target: /export
+  # picfit:
+  #   image: thoas/picfit:0.2.1
+  #   container_name: picfit
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - PICFIT_CONFIG_PATH=/picfit-config.json
+  #   volumes:
+  #     - ./picfit-config.json:/picfit-config.json
+  #     - type: bind
+  #       source: ./export
+  #       target: /export
 
 volumes:
   caddy_data:

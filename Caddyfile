@@ -4,16 +4,16 @@
 	file_server
 
 	log {
-		output stdout
+        output file /var/log/caddy/caddy-access.log
 	}
 
-	handle_path /art/api/thumbnail/* {
-		rewrite * /display?w=404&h=250&path={path}&op=thumbnail
-		reverse_proxy {$PICFIT_HOST}:3001
-	}
+	# handle_path /art/api/thumbnail/* {
+	# 	rewrite * /display?w=404&h=250&path={path}&op=thumbnail
+	# 	reverse_proxy {$PICFIT_HOST}:3001
+	# }
 
-	handle_path /art/api/fullhd/* {
-		rewrite * /display?w=1920&path={path}&op=resize
-		reverse_proxy {$PICFIT_HOST}:3001
-	}
+	# handle_path /art/api/fullhd/* {
+	# 	rewrite * /display?w=1920&path={path}&op=resize
+	# 	reverse_proxy {$PICFIT_HOST}:3001
+	# }
 }
